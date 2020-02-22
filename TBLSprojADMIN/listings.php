@@ -1,8 +1,11 @@
 <?php
 session_start();
+if(!isset($_SESSION['ADuser'])) {
+    die("Login kar re baba.");
+}
 $server = "localhost";
 $username = "root";
-$password = "";
+$password = "kambliSERVER";
 $db = "LibMan";
 
 $link = new mysqli($server, $username, $password, $db);

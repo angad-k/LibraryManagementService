@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!isset($_SESSION['user'])) {
+    die("Login kar re baba.");
+}
 
 ?>
 <!DOCTYPE html>

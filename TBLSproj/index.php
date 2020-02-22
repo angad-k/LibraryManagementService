@@ -1,7 +1,7 @@
 <?php
 $server = "localhost";
 $username = "root";
-$password = "";
+$password = "kambliSERVER";
 $db = "LibMan";
 
 $link = new mysqli($server, $username, $password, $db);
@@ -12,7 +12,7 @@ else {
     if((isset($_POST['user']))&&(isset($_POST['pass'])))
     {
         $user = $_POST['user'];
-        $pass = $_POST['pass'];
+        $pass = md5($_POST['pass']);
         $query = $link->query("SELECT * FROM clientdeets WHERE user = '".$user."';");
         $result = mysqli_fetch_assoc($query);
         if($result[pass] != $pass)
