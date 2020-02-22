@@ -58,5 +58,6 @@ else {
             } 
         ?>
     </table>
+    <button type = 'button' onclick = "window.location.href = 'clientHome.php'">Back</button>
 </body>
 </html>
