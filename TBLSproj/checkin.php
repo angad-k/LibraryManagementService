@@ -32,11 +32,3 @@ else {
     }
 }
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-</head>
-<body>
-<br><button type = 'button' onclick = "window.location.href = 'clientHome.php'">Back</button>
-</body>
-</html>

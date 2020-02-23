@@ -22,6 +22,7 @@ else {
 
 </head>
 <body>
+    <div id = "response"></div>
     <table>
         <tr>
             <th>Sr. No.</th>
@@ -37,17 +38,17 @@ else {
             if($row['available'] != 0)
             {
                 echo ' 
-                var checkreq = document.createElement("form");
-                var id = '.$row["ID"].';
-                var idnode = document.createElement("input");
-                idnode.type = "text";
-                idnode.name = "ID";
-                idnode.value = id;
-                checkreq.appendChild(idnode);
-                checkreq.method = "POST";
-                checkreq.action = "requestCheck.php";
-                document.body.appendChild(checkreq);
-                checkreq.submit();
+                var id = '.$row["ID"].'; 
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("response").innerHTML =
+                        this.responseText;
+                   }
+                };
+                xhttp.open("POST", "requestCheck.php", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("ID="+id);
                 ';
             }
             else

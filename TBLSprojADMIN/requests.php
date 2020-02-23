@@ -34,17 +34,14 @@ else {
             
             echo "<tr><td>".$i++."</td><td>".$row['user']."</td><td>".$row['title']."</td><td><button type = 'button' id = '".$row['ID']."' onclick = '";
             echo ' 
-            var checkreq = document.createElement("form");
-            var id = '.$row["ID"].';
-            var idnode = document.createElement("input");
-            idnode.type = "text";
-            idnode.name = "ID";
-            idnode.value = id;
-            checkreq.appendChild(idnode);
-            checkreq.method = "POST";
-            checkreq.action = "requestapprove.php";
-            document.body.appendChild(checkreq);
-            checkreq.submit();
+            
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "requestapprove.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("ID="+id);
+            location.reload();
+
+
             ';
             echo "'>Approve request</button></td></tr>";
         }

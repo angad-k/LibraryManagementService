@@ -22,6 +22,7 @@ else {
 
 </head>
 <body>
+<div id = "response"></div>
     Checked out books :
     <table>
         <tr>
@@ -34,17 +35,19 @@ else {
         while($row = $result->fetch_array()){
             echo "<tr><td>".$i++."</td><td>".$row['title']."</td><td><button type = 'button' id = '".$row['ID']."' onclick = '";
             echo ' 
-            var checkreq = document.createElement("form");
-            var id = '.$row["ID"].';
-            var idnode = document.createElement("input");
-            idnode.type = "text";
-            idnode.name = "ID";
-            idnode.value = id;
-            checkreq.appendChild(idnode);
-            checkreq.method = "POST";
-            checkreq.action = "checkin.php";
-            document.body.appendChild(checkreq);
-            checkreq.submit();   
+            var id = '.$row["ID"].'; 
+            var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("response").innerHTML =
+                        this.responseText;
+                        document.getElementById(id).disabled = true;
+                   }
+                };
+                xhttp.open("POST", "checkin.php", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("ID="+id);
+                
             ';
             echo "'>Check-in</button></td></tr>";
             } 
